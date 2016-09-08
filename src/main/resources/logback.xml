@@ -19,7 +19,8 @@ See here for more details: http://gordondickens.com/wordpress/2013/03/27/sawing-
 	<!--<logger name="org.hibernate" level="debug"/> -->
    <!-- Uncomment and add your logger here:-->
     <logger name="com.netbrains" level="info"/>
-    <logger level="warn" name="org.hibernate"/>
+    <logger level="trace" name="org.hibernate"/>
+    <logger level="debug" name="org.springframework.data"/>
     <root level="error">
         <appender-ref ref="console"/>
     </root>

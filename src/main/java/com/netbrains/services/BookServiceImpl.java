@@ -5,21 +5,30 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
 
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 
 import com.netbrains.dao.BookRepository;
+import com.netbrains.dao.LibraryRepository;
 import com.netbrains.model.Book;
+import com.netbrains.model.Library;
+
 
 @Service
 public class BookServiceImpl {
 
 	@Autowired
 	BookRepository bookRepository;
-
+	@Autowired
+	LibraryRepository libRepository;
+	
 	@Autowired
 	EntityManager em;
 
@@ -63,5 +72,14 @@ public class BookServiceImpl {
 		Query qry = em.createNamedQuery("findByAnyTag").setParameter("search", input);
 		return qry.getResultList();
 	}
-
+	
+	public Library findLibraryById(long id){
+		return libRepository.findById(id);
+	}
+	@Transactional(value=TxType.REQUIRED)
+	public List<Book> findBooksByLibId(long id){
+		Library lib=libRepository.findById(id);
+		Hibernate.initialize(lib.getBooks());
+		return lib.getBooks();
+	}
 }

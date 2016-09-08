@@ -3,10 +3,13 @@ package com.netbrains.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
 
@@ -22,6 +25,9 @@ public class Book implements Serializable {
 	String author;
 	String title;
 	String description;
+	@ManyToOne(optional=false,  targetEntity=Library.class)
+	@JoinColumn(name="libraryid", referencedColumnName="id")
+	Library library;
 
 	public Book() {
 		super();
@@ -75,6 +81,15 @@ public class Book implements Serializable {
 		if (label.equalsIgnoreCase("description"))
 			return description;
 		return null;
+	}
+
+
+	public Library getLibrary() {
+		return library;
+	}
+
+	public void setLibrary(Library library) {
+		this.library = library;
 	}
 
 	@Override
