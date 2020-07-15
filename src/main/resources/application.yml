@@ -7,7 +7,7 @@ spring:
     
   jpa:
     hibernate:
-      ddl-auto: true
+      ddl-auto: false
     
     
 #  h2:
