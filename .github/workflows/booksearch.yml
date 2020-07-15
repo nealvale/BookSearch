@@ -3,13 +3,13 @@
 
 name: Java CI with Maven
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-  watch: 
-    types: [ started ]
+on: [push, watch]
+#  push:
+#    branches: [ master ]
+#  pull_request:
+#    branches: [ master ]
+#  watch: 
+#    types: [ started ]
 jobs:
   build:
 
