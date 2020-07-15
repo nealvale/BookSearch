@@ -39,7 +39,7 @@ public class BookSearchApplication {
 
 	@Bean(initMethod = "start", destroyMethod = "stop")
 	public org.h2.tools.Server h2WebConsoleServer() throws SQLException {
-		return org.h2.tools.Server.createWebServer("-web","-browser", "-webAllowOthers", "-webDaemon", "-webPort", "8080");
+		return org.h2.tools.Server.createWebServer("-web","-browser", "-webAllowOthers", "-webDaemon", "-webPort", "8081");
 	}
 	
 
